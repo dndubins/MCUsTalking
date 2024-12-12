@@ -45,23 +45,23 @@ void loop() {
     bool ret = 0;               // to store results from Serial_send() function
     int n = Serial.parseInt();  // store integer from Serial Monitor to n
     Serial.print("Sending to MCU2: ");
-    Serial.println(n);                 // send snd to the regular Serial Monitor
+    Serial.println(n);                 // send n to the regular Serial Monitor
     ret = Serial_send(MCU2Serial, n);  // send n to MCU2
     if (!ret) Serial.println("Communications failure with MCU2Serial.");
     Serial.print("Sending to MCU3: ");
-    Serial.println(n + 1);                 // send snd to the regular Serial Monitor
-    ret = Serial_send(MCU3Serial, n + 1);  // send n to MCU3
+    Serial.println(n + 1);                 // send n+1 to the regular Serial Monitor
+    ret = Serial_send(MCU3Serial, n + 1);  // send n+1 to MCU3
     if (!ret) Serial.println("Communications failure with MCU3Serial.");
   }
 }
 
 bool Serial_send(SoftwareSerial &serialport, int s) {  // send integer "s" to SoftwareSerial device "serialport"
   //serialport is passed by value (prefix &) so the function operates on the actual serial port, and not a copy of it.
-  serialport.listen();                                 // listen to port x
-  unsigned long timer = millis();                      // start the timer
-  int r = 0;                                           // to receive integer from port x
-  serialport.print(s);                                 // send s to port x
-  timer = millis();                                    // start the timer
+  serialport.listen();             // listen to port x
+  unsigned long timer = millis();  // start the timer
+  int r = 0;                       // to receive integer from port x
+  serialport.print(s);             // send s to port x
+  timer = millis();                // start the timer
   while (!serialport.available() && millis() - timer < TIMEOUT)
     ;                            // wait for response from MCU2, with TIMEOUT limit
   if (serialport.available()) {  // if there's something waiting from port x
