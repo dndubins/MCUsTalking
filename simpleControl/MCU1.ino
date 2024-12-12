@@ -55,7 +55,8 @@ void loop() {
   }
 }
 
-bool Serial_send(SoftwareSerial &serialport, int s) {  // send integer "s" to SoftwareSerial device "x"
+bool Serial_send(SoftwareSerial &serialport, int s) {  // send integer "s" to SoftwareSerial device "serialport"
+  //serialport is passed by value (prefix &) so the function operates on the actual serial port, and not a copy of it.
   serialport.listen();                                 // listen to port x
   unsigned long timer = millis();                      // start the timer
   int r = 0;                                           // to receive integer from port x
@@ -81,6 +82,7 @@ bool Serial_send(SoftwareSerial &serialport, int s) {  // send integer "s" to So
 }
 
 void Serial_clear(SoftwareSerial &serialport) {  // used to clear the serial buffers from junk
+  //serialport is passed by value (prefix &) so the function operates on the actual serial port, and not a copy of it.
   serialport.listen();
   while (serialport.available()) {  // while data are available in the buffer
     byte i = serialport.read();     // read the data and store to i
