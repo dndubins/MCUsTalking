@@ -4,7 +4,7 @@
 
  * Description: This project illustrates how to get one MCU to send commands to another through a SoftwareSerial connection.
  * This sketch is for the second MCU (MCU2). The second MCU (MCU2) will be powered parasitically through the Vin and GND pins of MCU1.
- * This is hookup is optional though, they can be independently powered.
+ * This is hookup is optional though, they can be independently powered. GND should be connected between MCU1 and MCU2.
  * 
  * MCU1 reads an integer from the Serial Monitor, and sends a command to MCU2 through the SoftwareSerial connection.
  * MCU2 receives the command, executes a function, then reports back to MCU1 for error checking.
@@ -42,4 +42,3 @@ void flashLED(int n) {  // flash the LED n times
     delay(200);                  // wait a bit
   }
 }
-
