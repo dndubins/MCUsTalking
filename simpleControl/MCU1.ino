@@ -57,17 +57,17 @@ void loop() {
 
 bool Serial_send(SoftwareSerial &serialport, int s) {  // send integer "s" to SoftwareSerial device "serialport"
   //serialport is passed by value (prefix &) so the function operates on the actual serial port, and not a copy of it.
-  serialport.listen();             // listen to port x
+  serialport.listen();             // listen port serialport
   unsigned long timer = millis();  // start the timer
-  int r = 0;                       // to receive integer from port x
-  serialport.print(s);             // send s to port x
+  int r = 0;                       // to receive integer from port serialport
+  serialport.print(s);             // send s to port serialport
   timer = millis();                // start the timer
   while (!serialport.available() && millis() - timer < TIMEOUT)
     ;                            // wait for response from MCU2, with TIMEOUT limit
-  if (serialport.available()) {  // if there's something waiting from port x
+  if (serialport.available()) {  // if there's something waiting from port serialport
     r = serialport.parseInt();   // store it to r
     Serial.print("Receiving: ");
-    Serial.println(r);  // send rcv to the regular Serial Monitor
+    Serial.println(r);  // send r to the regular Serial Monitor
     if (s == r) {       // integers should match
       return 1;         // communication successful
     } else {
@@ -78,7 +78,7 @@ bool Serial_send(SoftwareSerial &serialport, int s) {  // send integer "s" to So
     Serial.println("Communication timed out.");
     Serial_clear(serialport);
   }
-  return 0;  // response not received from MCU2
+  return 0;  // desired response not received from MCU
 }
 
 void Serial_clear(SoftwareSerial &serialport) {  // used to clear the serial buffers from junk
