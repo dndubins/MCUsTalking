@@ -1,28 +1,33 @@
-/* SoftwareSerial example, MCU1 is controlling MCU2 and MCU3. This sketch is for MCU1 - the master. MCU2 is the sketch for both slaves.
- * Author: D. Dubins
- * Date: 11-Dec-24
+/* SoftwareSerial example, MCU1 is controlling MCU2 and MCU3. This sketch is for MCU1 - the master. MCU2 is the sketch for both slaves (MCU2 and MCU3).
+   Author: D. Dubins
+   Date: 11-Dec-24
 
- * Description: This project illustrates how to get one MCU to send commands to another two MCUs through SoftwareSerial connections.
- * This sketch is for the first MCU (MCU1). The second MCUs (MCU2 and MCU3) will be powered parasitically through the Vin and GND pins of MCU1.
- * This is hookup is optional though, they can be independently powered.
- * 
- * MCU1 reads an integer n from the Serial Monitor, then sends n MCU2 (to flash n times) and n+1 to MCU3 (to flash n+1 times), through the SoftwareSerial connections.
- * MCU2 and MCU3 send back their received numbers back to MCU1 for error checking.
+   Description: This project illustrates how to get one MCU to send commands to another two MCUs through SoftwareSerial connections.
+   This sketch is for the first MCU (MCU1). The second MCUs (MCU2 and MCU3) will be powered parasitically through the Vin and GND pins of MCU1.
+   This is hookup is optional though, they can be independently powered.
 
- * Connections: (MCU1 - MCU2)
- * Vin - Vin (or power independently)
- * GND - GND
- * Pin 2 - Pin 3 (RX - TX)
- * Pin 3 - Pin 2 (TX - RX)
- *
- * Connections: (MCU1 - MCU3)
- * Vin - Vin (or power independently)
- * GND - GND
- * Pin 4 - Pin 3 (RX - TX)
- * Pin 5 - Pin 2 (TX - RX)
- * Note: If using multiple software serial ports, only one can receive data at a time.
- * Also see: https://docs.arduino.cc/learn/built-in-libraries/software-serial/
- * And: https://forum.arduino.cc/t/can-you-pass-a-serial-port-as-a-parameter/658755/3
+   MCU1 reads a char variable c from the Serial Monitor, then sends a code to MCU2 or MCU3, through the SoftwareSerial connections.
+   The other MCU sends the received code back to MCU1 for error checking, and run the routine.
+
+   I could have easily programmed the MCU1 sketch to send a char variable, and MCU2 to read a char on the other side,
+   but integer numbers offer more flexibility:
+    -they have a wider range (int range is -32,768 to 32767, char range is one byte, 0-255).
+    -they are more specific (a large, specific integer is less likely to randomly appear on the serial monitor as noise than something like a char '0').
+
+   Connections: (MCU1 - MCU2)
+   Vin - Vin (or power independently)
+   GND - GND
+   Pin 2 - Pin 3 (RX - TX)
+   Pin 3 - Pin 2 (TX - RX)
+
+   Connections: (MCU1 - MCU3)
+   Vin - Vin (or power independently)
+   GND - GND
+   Pin 4 - Pin 3 (RX - TX)
+   Pin 5 - Pin 2 (TX - RX)
+   Note: If using multiple software serial ports, only one can receive data at a time.
+   Also see: https://docs.arduino.cc/learn/built-in-libraries/software-serial/
+   And: https://forum.arduino.cc/t/can-you-pass-a-serial-port-as-a-parameter/658755/3
 */
 
 #include <SoftwareSerial.h>       // include the software serial library
@@ -37,21 +42,55 @@ void setup() {
   Serial_clear(MCU2Serial);  // clear MCU2Serial
   Serial_clear(MCU3Serial);  // clear MCU3Serial
   delay(1000);               // wait for MCUs to boot up
-  Serial.println("Enter number of flashes to send.");
+  Serial.println("Options: a: MCU2,prog1 b:MCU2,prog2 c:MCU2,prog3 d:MCU3,prog1 e:MCU3,prog2 f:MCU3,prog3");
 }
 
 void loop() {
   if (Serial.available()) {     // if user entered something on the serial monitor
     bool ret = 0;               // to store results from Serial_send() function
-    int n = Serial.parseInt();  // store integer from Serial Monitor to n
-    Serial.print("Sending to MCU2: ");
-    Serial.println(n);                 // send n to the regular Serial Monitor
-    ret = Serial_send(MCU2Serial, n);  // send n to MCU2
-    if (!ret) Serial.println("Communications failure with MCU2Serial.");
-    Serial.print("Sending to MCU3: ");
-    Serial.println(n + 1);                 // send n+1 to the regular Serial Monitor
-    ret = Serial_send(MCU3Serial, n + 1);  // send n+1 to MCU3
-    if (!ret) Serial.println("Communications failure with MCU3Serial.");
+    char c = Serial.read();      // read char from Serial Monitor to c
+    switch (c) {
+      case 'a':
+        Serial.print("Sending to MCU2: ");
+        Serial.println(901);                 // send 901 to the regular Serial Monitor
+        ret = Serial_send(MCU2Serial, 901);  // send 901 to MCU2
+        if (!ret) Serial.println("Communications failure with MCU2Serial.");
+        break;
+      case 'b':
+        Serial.print("Sending to MCU2: ");
+        Serial.println(902);                 // send 902 to the regular Serial Monitor
+        ret = Serial_send(MCU2Serial, 902);  // send 902 to MCU2
+        if (!ret) Serial.println("Communications failure with MCU2Serial.");
+        break;
+      case 'c':
+        Serial.print("Sending to MCU2: ");
+        Serial.println(903);                 // send 903 to the regular Serial Monitor
+        ret = Serial_send(MCU2Serial, 903);  // send 903 to MCU2
+        if (!ret) Serial.println("Communications failure with MCU2Serial.");
+        break;
+      case 'd':
+        Serial.print("Sending to MCU3: ");
+        Serial.println(901);                 // send 901 to the regular Serial Monitor
+        ret = Serial_send(MCU3Serial, 901);  // send 901 to MCU3
+        if (!ret) Serial.println("Communications failure with MCU3Serial.");
+        break;
+      case 'e':
+        Serial.print("Sending to MCU3: ");
+        Serial.println(902);                 // send 902 to the regular Serial Monitor
+        ret = Serial_send(MCU3Serial, 902);  // send 902 to MCU3
+        if (!ret) Serial.println("Communications failure with MCU3Serial.");
+        break;
+      case 'f':
+        Serial.print("Sending to MCU3: ");
+        Serial.println(903);                 // send 903 to the regular Serial Monitor
+        ret = Serial_send(MCU3Serial, 903);  // send 903 to MCU3
+        if (!ret) Serial.println("Communications failure with MCU3Serial.");
+        break;
+      default:
+        Serial.println("Invalid option.");
+        break;
+    } // end switch case
+    Serial.println("Options: a: MCU2,prog1 b:MCU2,prog2 c:MCU2,prog3 d:MCU3,prog1 e:MCU3,prog2 f:MCU3,prog3");
   }
 }
 
