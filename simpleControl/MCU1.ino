@@ -1,10 +1,10 @@
 /* SoftwareSerial example, MCU1 is controlling MCU2 and MCU3. This sketch is for MCU1 - the master. MCU2 is the sketch for both slaves (MCU2 and MCU3).
    Author: D. Dubins
-   Date: 11-Dec-24
+   Date: 12-Dec-24
 
    Description: This project illustrates how to get one MCU to send commands to another two MCUs through SoftwareSerial connections.
    This sketch is for the first MCU (MCU1). The second MCUs (MCU2 and MCU3) will be powered parasitically through the Vin and GND pins of MCU1.
-   This is hookup is optional though, they can be independently powered.
+   This is hookup is optional though, they can be independently powered - as long as they share a ground with the parent MCU.
 
    MCU1 reads a char variable c from the Serial Monitor, then sends a code to MCU2 or MCU3, through the SoftwareSerial connections.
    The other MCU sends the received code back to MCU1 for error checking, and run the routine.
