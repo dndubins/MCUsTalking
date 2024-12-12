@@ -22,6 +22,7 @@
  * Pin 5 - Pin 2 (TX - RX)
  * Note: If using multiple software serial ports, only one can receive data at a time.
  * Also see: https://docs.arduino.cc/learn/built-in-libraries/software-serial/
+ * And: https://forum.arduino.cc/t/can-you-pass-a-serial-port-as-a-parameter/658755/3
 */
 
 #include <SoftwareSerial.h>       // include the software serial library
