@@ -53,7 +53,8 @@ void flashLED(int n) {  // flash the LED n times
   }
 }
 
-void Serial_clear(SoftwareSerial &serialport) {  // used to clear the serial buffers from junk
+void Serial_clear(SoftwareSerial &serialport) {  // used to clear the serial buffers from junk. 
+  //serialport is passed by value (prefix &) so the function operates on the actual serial port, and not a copy of it.
   serialport.listen();
   while (serialport.available()) {  // while data are available in the buffer
     byte i = serialport.read();     // read the data and store to i
