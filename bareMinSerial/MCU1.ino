@@ -55,16 +55,15 @@ void loop() {
   }
 }
 
-bool Serial_send(SoftwareSerial x, int s) {  // send integer "s" to SoftwareSerial device "x"
-  x.listen();                                // listen to port x
+bool Serial_send(SoftwareSerial &serialport, int s) {  // send integer "s" to SoftwareSerial device "serialport"
+  serialport.listen();                       // listen to port serialport
   unsigned long timer = millis();            // start the timer
-  int r = 0;                                 // to receive integer from port x
-  x.print(s);                                // send s to port x
+  int r = 0;                                 // to receive integer from port serialport
+  serialport.print(s);                       // send s to port serialport
   timer = millis();                          // start the timer
-  while (!x.available() && millis() - timer < TIMEOUT)
-    ;                   // wait for response from MCU2, with TIMEOUT limit
-  if (x.available()) {  // if there's something waiting from port x
-    r = x.parseInt();   // store it to r
+  while (!seriaport.available() && millis() - timer < TIMEOUT); // wait for response from MCU2, with TIMEOUT limit
+  if (serialport.available()) {  // if there's something waiting from port serialport
+    r = serialport.parseInt();   // store it to r
     Serial.print("Receiving: ");
     Serial.println(r);  // send rcv to the regular Serial Monitor
     if (s == r) {       // integers should match
@@ -75,14 +74,14 @@ bool Serial_send(SoftwareSerial x, int s) {  // send integer "s" to SoftwareSeri
     }
   } else {  // timeout feature
     Serial.println("Communication timed out.");
-    Serial_clear(x);  // get rid of any residual data in the serial buffer
+    Serial_clear(serialport);  // get rid of any residual data in the serial buffer
     return 0;         // response not received from MCU2
   }
 }
 
-void Serial_clear(SoftwareSerial x) {  // used to clear the serial buffers from junk
-  x.listen();                          // listen to port x
-  while (x.available()) {              // while data are available in the buffer
-    byte i = x.read();                 // read the data and store to i
+void Serial_clear(SoftwareSerial &serialport) {  // used to clear the serial buffers from junk
+  serialport.listen();                           // listen to port serialport
+  while (serialport.available()) {               // while data are available in the buffer
+    byte i = serialport.read();                  // read the data and store to i
   }
 }
