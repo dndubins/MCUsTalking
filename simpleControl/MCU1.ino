@@ -50,43 +50,43 @@ void loop() {
     bool ret = 0;               // to store results from Serial_send() function
     char c = Serial.read();      // read char from Serial Monitor to c
     switch (c) {
-      case 'a':
+      case 'a': // MCU2, program 1
         Serial.print("Sending to MCU2: ");
         Serial.println(901);                 // send 901 to the regular Serial Monitor
         ret = Serial_send(MCU2Serial, 901);  // send 901 to MCU2
         if (!ret) Serial.println("Communications failure with MCU2Serial.");
         break;
-      case 'b':
+      case 'b': // MCU2, program 2
         Serial.print("Sending to MCU2: ");
         Serial.println(902);                 // send 902 to the regular Serial Monitor
         ret = Serial_send(MCU2Serial, 902);  // send 902 to MCU2
         if (!ret) Serial.println("Communications failure with MCU2Serial.");
         break;
-      case 'c':
+      case 'c': // MCU2, program 3
         Serial.print("Sending to MCU2: ");
         Serial.println(903);                 // send 903 to the regular Serial Monitor
         ret = Serial_send(MCU2Serial, 903);  // send 903 to MCU2
         if (!ret) Serial.println("Communications failure with MCU2Serial.");
         break;
-      case 'd':
+      case 'd': // MCU3, program 1
         Serial.print("Sending to MCU3: ");
         Serial.println(901);                 // send 901 to the regular Serial Monitor
         ret = Serial_send(MCU3Serial, 901);  // send 901 to MCU3
         if (!ret) Serial.println("Communications failure with MCU3Serial.");
         break;
-      case 'e':
+      case 'e': // MCU3, program 2
         Serial.print("Sending to MCU3: ");
         Serial.println(902);                 // send 902 to the regular Serial Monitor
         ret = Serial_send(MCU3Serial, 902);  // send 902 to MCU3
         if (!ret) Serial.println("Communications failure with MCU3Serial.");
         break;
-      case 'f':
+      case 'f': // MCU3, program 3
         Serial.print("Sending to MCU3: ");
         Serial.println(903);                 // send 903 to the regular Serial Monitor
         ret = Serial_send(MCU3Serial, 903);  // send 903 to MCU3
         if (!ret) Serial.println("Communications failure with MCU3Serial.");
         break;
-      case 'g':
+      case 'g': // showing control of 2 MCUs in one call: MCU2, program 1 and MCU3, program 1
         Serial.print("Sending to MCU2: ");
         Serial.println(901);                 // send 903 to the regular Serial Monitor
         ret = Serial_send(MCU2Serial, 901);  // send 903 to MCU3
@@ -96,8 +96,8 @@ void loop() {
         ret = Serial_send(MCU3Serial, 901);  // send 903 to MCU3
         if (!ret) Serial.println("Communications failure with MCU3Serial.");
         break;
-      default:
-        Serial.println("Invalid option.");
+      default:                              // if an option wasn't found as a specific case, 
+        Serial.println("Invalid option.");  // tell user their selection was not understood
         break;
     } // end switch case
     Serial.println("Options: a: MCU2,prog1 b:MCU2,prog2 c:MCU2,prog3 d:MCU3,prog1 e:MCU3,prog2 f:MCU3,prog3 g:MCU2+MCU3,prog1");
