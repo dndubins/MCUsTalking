@@ -42,7 +42,7 @@ void setup() {
   Serial_clear(MCU2Serial);  // clear MCU2Serial
   Serial_clear(MCU3Serial);  // clear MCU3Serial
   delay(1000);               // wait for MCUs to boot up
-  Serial.println("Options: a: MCU2,prog1 b:MCU2,prog2 c:MCU2,prog3 d:MCU3,prog1 e:MCU3,prog2 f:MCU3,prog3");
+  Serial.println("Options: a: MCU2,prog1 b:MCU2,prog2 c:MCU2,prog3 d:MCU3,prog1 e:MCU3,prog2 f:MCU3,prog3 g:MCU2+MCU3,prog1");
 }
 
 void loop() {
@@ -86,11 +86,21 @@ void loop() {
         ret = Serial_send(MCU3Serial, 903);  // send 903 to MCU3
         if (!ret) Serial.println("Communications failure with MCU3Serial.");
         break;
+      case 'g':
+        Serial.print("Sending to MCU2: ");
+        Serial.println(901);                 // send 903 to the regular Serial Monitor
+        ret = Serial_send(MCU2Serial, 901);  // send 903 to MCU3
+        if (!ret) Serial.println("Communications failure with MCU2Serial.");
+        Serial.print("Sending to MCU3: ");
+        Serial.println(901);                 // send 903 to the regular Serial Monitor
+        ret = Serial_send(MCU3Serial, 901);  // send 903 to MCU3
+        if (!ret) Serial.println("Communications failure with MCU3Serial.");
+        break;
       default:
         Serial.println("Invalid option.");
         break;
     } // end switch case
-    Serial.println("Options: a: MCU2,prog1 b:MCU2,prog2 c:MCU2,prog3 d:MCU3,prog1 e:MCU3,prog2 f:MCU3,prog3");
+    Serial.println("Options: a: MCU2,prog1 b:MCU2,prog2 c:MCU2,prog3 d:MCU3,prog1 e:MCU3,prog2 f:MCU3,prog3 g:MCU2+MCU3,prog1");
   }
 }
 
