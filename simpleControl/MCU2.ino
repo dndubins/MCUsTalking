@@ -30,17 +30,17 @@ SoftwareSerial MCU1Serial(2, 3);  // define software serial connection to MCU1 (
 #define LEDPIN 13
 
 void setup() {
-  MCU1Serial.begin(57600);  // start software serial connection (max speed for SoftwareSerial is 57600 for Uno)
-  Serial_clear(MCU1Serial); // clear MCU1Serial buffers
-  pinMode(LEDPIN, OUTPUT);  // set LEDPIN to OUTPUT mode
+  MCU1Serial.begin(57600);   // start software serial connection (max speed for SoftwareSerial is 57600 for Uno)
+  Serial_clear(MCU1Serial);  // clear MCU1Serial buffers
+  pinMode(LEDPIN, OUTPUT);   // set LEDPIN to OUTPUT mode
 }
 
 void loop() {
   if (MCU1Serial.available()) {     // if there's something received from MC1Serial
     int r = MCU1Serial.parseInt();  // store it to r
-    MCU1Serial.print(r);            // send r to the other MCU
+    MCU1Serial.print(r);            // send r to MCU1 to confirm receipt
     flashLED(r);                    // flash onboard LED r times
-    Serial_clear(MCU1Serial);       // get rid of any residual data on the MCU1Serial monitor
+    Serial_clear(MCU1Serial);       // clear MCU1Serial buffers (clears commands collected during execution)
   }
 }
 
@@ -53,8 +53,9 @@ void flashLED(int n) {  // flash the LED n times
   }
 }
 
-void Serial_clear(SoftwareSerial x) {  // used to clear the serial buffers from junk
-  while (x.available()) {  // while data are available in the buffer
-    byte i = x.read();     // read the data and store to i
+void Serial_clear(SoftwareSerial &serialport) {  // used to clear the serial buffers from junk
+  serialport.listen();
+  while (serialport.available()) {  // while data are available in the buffer
+    byte i = serialport.read();     // read the data and store to i
   }
 }
