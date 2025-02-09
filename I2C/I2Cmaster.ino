@@ -10,7 +10,7 @@ DroneBot Workshop 2019
 
 #include <Wire.h> // Include Arduino Wire.h library
 //Note you can message multiple slaves with this sketch, that should have unique bit addresses.
-#define I2C_ADDR 0x08 // use bit address 0x08 for the slave. 
+#define I2C_ADDR1 0x08 // use bit address 0x08 for the slave. 
 #define BYTELEN 5     // number of bytes (or characters) to ask for from the slave
 
 void setup(){
@@ -21,14 +21,14 @@ void setup(){
 
 void loop(){
   byte snd=0; // byte that we will send to slave. Feel free to change this as needed (e.g. any number between 0-255)
-  Wire.beginTransmission(I2C_ADDR); // Start a call to slave address I2C_ADDR
+  Wire.beginTransmission(I2C_ADDR1); // Start a call to slave address I2C_ADDR
   Wire.write(snd);  // send a character 0 to the slave
   Wire.endTransmission(); // end transmission to slave
   Serial.print("Sent to slave: ");
   Serial.println(snd);
 
   // Get data back from the slave:
-  Wire.requestFrom(I2C_ADDR,BYTELEN); // ask for BITLEN bytes from slave
+  Wire.requestFrom(I2C_ADDR1,BYTELEN); // ask for BITLEN bytes from slave
   String response=""; // get response string ready
   while (Wire.available()){
     char c=Wire.read(); // read character from slave
