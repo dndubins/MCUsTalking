@@ -1,5 +1,5 @@
 /* I2Cmaster.ino
-Designed to send and receive data with I2master.ino,
+Designed to send and receive data with I2slave.ino,
 For Arduino Uno devices compatible with Wire.h (e.g. Uno, Mega).
 Author: D. Dubins
 Date: 09-Feb-25
