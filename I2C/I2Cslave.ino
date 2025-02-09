@@ -5,6 +5,13 @@ Author: D. Dubins
 Date: 09-Feb-25
 Modified from: https://www.youtube.com/watch?v=PnG4fO5_vU4&t=326s&ab_channel=DroneBotWorkshop
 DroneBot Workshop 2019
+
+Wiring:
+Uno1 (master) -- Uno2 (slave):
+SDA - SDA
+SCL - SCL
+GND - GND
+-Wire 10K pull-up resistors on SDA and SCL pins of master
 */
 
 #include <Wire.h> // Include Arduino Wire.h library
