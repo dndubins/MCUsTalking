@@ -1,3 +1,4 @@
+# Connecting Two Arduino Unos via I2C
 These two sketches connect two Unos together, to send information to each other using an I2C bus. The slave sketch can be used for multiple slaves as long as the I2C address is changed to be a unique address. The master can control multiple slaves using the specific address of that slave.<p>
 
 The sketches I2Cmaster.ino and I2Cslave.ino allow for bi-directional communication.<br>
