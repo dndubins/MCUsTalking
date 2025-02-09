@@ -29,7 +29,7 @@ void setup() {
 void loop() {
   if (MCU1Serial.available()) {       // if there's something received by mySerial
     int rcv = MCU1Serial.parseInt();  // store it to rcv
-    MCU1Serial.print(rcv);            // send i to the other MCU
+    MCU1Serial.print(rcv);            // send rcv to MCU1
     flashLED(rcv);                    // flash onboard LED rcv times
   }
 }
