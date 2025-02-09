@@ -1,5 +1,5 @@
 # MCUsTalking
-This is a collection of example sketches linking microprocessors together, by SoftwareSerial, and PWM signals.<p>
+This is a collection of example sketches linking microprocessors together, by SoftwareSerial, PWM, and I2C.<p>
 The following projects are examples of SoftwareSerial connections between MCUs:<p>
 "2KeyPads" is an example of one-way SoftwareSerial communication between two Arduino Unos set up as keypads. It was inspired by a student's design project in PHC435: a 2-handed Dactyl Manuform keyboard controlled by two Arduino Pro Micro Leonardos. Half-libraries of the SoftwareSerial.h library are used, since only one send-receive wire is needed.<p>
 "LeapFrog" is an example of using the full SoftwareSerial.h library. An LED receives an integer from the SoftwareSerial monitor, flashes its onboard LED that number of times, then sends that number + 1 through the SoftwareSerial monitor to the other MCU.<p>
