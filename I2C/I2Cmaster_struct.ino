@@ -21,7 +21,7 @@ GND - GND
 bool rcv=false;   // receive flag for new data
 
 // Example of a structure to be sent over I2C (13 bytes total)
-struct myStruct { // example structure to send over I2C. This was for a servo.
+struct myStruct { // example structure to send over I2C.
   float F; // float is 4 bytes
   long L; // long is 4 bytes
   int I;  // int is 2 bytes
