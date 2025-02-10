@@ -30,7 +30,7 @@ struct myStruct { // example structure to send over I2C.
   bool b;   // bool is 1 byte
 };  
 
-// Declare a union to help decode the structure once received or sent
+// Declare union to help represent struct as char array
 union myUnion { //declare union in global space
   char myCharArr[sizeof(myStruct)]; // char array to be shared with sData
   myStruct myData; //occupies same memory as myCharArr
