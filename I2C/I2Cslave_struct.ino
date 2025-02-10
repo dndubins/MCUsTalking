@@ -54,7 +54,7 @@ void requestEvent(){ // function that runs when master asks for information.
 
 void receiveEvent(){ // function that runs when master sends information
   int i=0;
-  while (Wire.available()>0){ // this can be expanded to receive a bigger message than 1 byte.
+  while (Wire.available()>0){
     RXdata.myCharArr[i++]=Wire.read();
   }
 }
