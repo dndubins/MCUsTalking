@@ -58,7 +58,7 @@ void loop(){
   delay(500); // wait between receiving and sending
 
   // Next, we will request data from the slave:
-  Wire.requestFrom(I2C_ADDR1,sizeof(myStruct));  // Request of size of struct (10 bytes here)
+  Wire.requestFrom(I2C_ADDR1,sizeof(myStruct));  // Request of size of struct (13 bytes here)
   int i=0;
   while(Wire.available()){    
     RXdata.myCharArr[i++] = Wire.read();  // Read the next byte from the slave
