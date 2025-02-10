@@ -17,7 +17,6 @@ GND - GND
 
 #include <Wire.h> // Include Arduino Wire.h library
 #define I2C_ADDR 0x08  // use a unique bit address 0x08 for the slave
-byte rcv = 0;          // to hold received data from master
 
 // Example of a structure to be sent over I2C (13 bytes total)
 struct myStruct { // example structure to send over I2C. This was for a servo.
@@ -54,7 +53,7 @@ void requestEvent(){ // function that runs when master asks for information.
 }
 
 void receiveEvent(){ // function that runs when master sends information
-  int i=0; // rcv defined in global space so you can use the value inside the loop() function.
+  int i=0;
   while (Wire.available()>0){ // this can be expanded to receive a bigger message than 1 byte.
     RXdata.myCharArr[i++]=Wire.read();
   }
