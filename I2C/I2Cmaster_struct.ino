@@ -51,11 +51,15 @@ void setup(){
 
 void loop(){
   // First, we will send data to the slave:
+  Serial.print("Sending ");
+  Serial.print(sizeof(myStruct));
+  Serial.println(" bytes to slave.");
+
   Wire.beginTransmission(I2C_ADDR1);  // Start I2C transmission to slave
-  Wire.write(TXdata.myCharArr);  // Send the data as the char array myCharArr
+  Wire.write(TXdata.myCharArr, sizeof(myStruct));  // Send the data as the char array myCharArr
   Wire.endTransmission();  // End the transmission
   Serial.println("Data sent to slave.");
-  delay(500); // wait between receiving and sending
+  delay(2000); // wait between receiving and sending
 
   // Next, we will request data from the slave:
   Wire.requestFrom(I2C_ADDR1,sizeof(myStruct));  // Request of size of struct (13 bytes here)
@@ -63,6 +67,7 @@ void loop(){
   while(Wire.available()){    
     RXdata.myCharArr[i++] = Wire.read();  // Read the next byte from the slave
   }
+  if(i==sizeof(myStruct))rcv=true; // Is the received package the correct size?
   if(rcv){ // if new data received:
     // Print the received struct
     Serial.println(F("Received from slave: "));
@@ -75,4 +80,5 @@ void loop(){
   }else{
     Serial.println("Data communications error.");
   }
+  delay(2000);
 }
