@@ -29,7 +29,7 @@ void setup(){
 void loop(){
   byte snd=0; // byte that we will send to slave. Feel free to change this as needed (e.g. any number between 0-255)
   Wire.beginTransmission(I2C_ADDR1); // Start a call to slave address I2C_ADDR
-  Wire.write(snd);  // send a character 0 to the slave
+  Wire.write(snd,1);  // send a character 0 to the slave (1 byte long)
   Wire.endTransmission(); // end transmission to slave
   Serial.print("Sent to slave: ");
   Serial.println(snd);
