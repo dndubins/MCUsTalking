@@ -17,7 +17,7 @@ GND - GND
 
 #include <Wire.h> // Include Arduino Wire.h library
 #define I2C_ADDR 0x08  // use a unique bit address 0x08 for the slave
-bool rcv=0;            // flag for receiving new data
+
 // Example of a structure to be sent over I2C (13 bytes total)
 struct myStruct { // example structure to send over I2C. This was for a servo.
   float F; // float is 4 bytes
@@ -59,5 +59,7 @@ void receiveEvent(){ // function that runs when master sends information
   }
   if(i==sizeof(myStruct)){
     Serial.println("Data received from master.");
+  }else{
+    Serial.println("Communications error.");
   }
 }
