@@ -3,6 +3,7 @@
 // Adapted by David Dubins 
 // Date: 12-Feb-25
 // Original sketch by Nick Gammon, I2C_scanner.ino, 20th April 2011
+// Previously available at: https://playground.arduino.cc/Main/I2cScanner
 // List of common addresses: https://learn.adafruit.com/i2c-addresses/the-list
 
 #include <Wire.h> // include Wire.h for I2C communications
