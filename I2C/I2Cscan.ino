@@ -20,7 +20,7 @@ void setup(){
       Serial.print(++count);
       Serial.print(F(" address: "));
       Serial.print(i,DEC);
-      Serial.print(F("(0x"));
+      Serial.print(F(" (0x"));
       Serial.print(i,HEX);
       Serial.println(F(")"));
       delay(10);
