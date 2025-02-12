@@ -1,4 +1,4 @@
-// I2C_Scanner.ino
+// I2Cscan.ino
 // Written by David Dubins
 // Adapted from: Nick Gammon's sketch I2C_scanner.ino, 20th April 2011
 // List of common addresses: https://learn.adafruit.com/i2c-addresses/the-list
