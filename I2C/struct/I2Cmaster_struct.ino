@@ -76,7 +76,8 @@ void loop(){
     Serial.println(RXdata.myData.I);
     Serial.println(RXdata.myData.B);
     Serial.println(RXdata.myData.C);
-    Serial.println(RXdata.myData.b);   
+    Serial.println(RXdata.myData.b);
+    rcv=false;  // reset received data flag
   }else{
     Serial.println("Data communications error.");
   }
