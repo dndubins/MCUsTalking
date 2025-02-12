@@ -10,26 +10,23 @@
 
 void setup(){
   Serial.begin(9600); // Start the Serial Monitor
-  Serial.println("Scanning for I2C devices.");
+  Serial.println(F("Scanning for I2C devices."));
   byte count = 0;
   Wire.begin(); // initialize I2C as Master
   for(byte i=8; i<120;i++){ // Addresses 0-7 and >0x77 are reserved.
     Wire.beginTransmission(i);
     if (Wire.endTransmission()==0){
-      Serial.print("Found address: ");
+      Serial.print(F("Device "));
+      Serial.print(++count);
+      Serial.print(F(" address: "));
       Serial.print(i,DEC);
       Serial.print("(0x");
       Serial.print(i,HEX);
       Serial.println(")");
-      count++;
       delay(10);
       } 
   }
-  Serial.println ("Scan finished.");
-  Serial.print ("Found ");
-  Serial.print (count, DEC);
-  Serial.println (" device(s).");
-  Serial.println("Press RST to scan again.");
+  Serial.println (F("Scan finished. Press RST to scan again."));
 }
 
 void loop(){
