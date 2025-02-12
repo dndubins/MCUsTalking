@@ -13,4 +13,7 @@ However, what if you'd like to transfer more than one variable, and they are dif
 
 I2Cmaster_struct.ino and I2Cslave_struct.ino.
 
-The implementation was easier and faster than I thought. The master sends TXdata to the slave. The slave then reads it into RXdata, then sends it back to the master. The master receives the data in its own variable called RXdata, then prints it out to show the journey was successful. The return trip isn't necessary, but the code is there if you need it. Maybe just a "true" that it worked.
+The implementation was easier and faster than I thought. The master sends TXdata to the slave. The slave then reads it into RXdata, then sends it back to the master. The master receives the data in its own variable called RXdata, then prints it out to show the journey was successful. The return trip isn't necessary, but the code is there if you need it. Maybe just a "true" that it worked.<p>
+
+<b>Note:</b> When you are defining an I2C address, pick a unique number that is in the range 0x08 (DEC: 8) to 0x77 (DEC: 119). Numbers outside this range are reserved.
+To see common I2C addresses of other devices (and to avoid hardware conflicts), see: https://learn.adafruit.com/i2c-addresses/the-list<p>
