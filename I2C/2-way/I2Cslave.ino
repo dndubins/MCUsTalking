@@ -1,5 +1,5 @@
 /* I2Cslave.ino
-Designed to send and receive data with I2Cmaster.ino,
+Designed to send and receive data with I2Cslave.ino,
 For Arduino Uno devices compatible with Wire.h (e.g. Uno, Mega).
 Author: D. Dubins
 Date: 09-Feb-25
@@ -39,7 +39,7 @@ void requestEvent(){ // function that runs when master asks for information
     response[i]=(byte)msg.charAt(i); // I think you can safely replace this with msg[i]. charAT() is a function to index strings like arrays.
   }
   Wire.write(response,sizeof(response)); // send msg to master
-  Serial.println("Sent to master: "); // report event to Serial Monitor.
+  Serial.print("Sent to master: "); // report event to Serial Monitor.
   Serial.println(msg);  
 }
 
