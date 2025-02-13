@@ -22,7 +22,7 @@ char msg[6] = "Hello";  // message to send
 
 void setup(){
   Serial.begin(9600);   // Start the Serial Monitor
-   Wire.begin(I2C_ADDR); // initialize I2C using slave address I2C_ADDR, in slave mode.
+  Wire.begin(I2C_ADDR); // initialize I2C using slave address I2C_ADDR, in slave mode.
   Wire.onRequest(requestEvent); // attach interrupt function requestEvent, to run when data is requested from master.
   Wire.onReceive(receiveEvent); // attach interrupt function receiveEvent, to run when data is received from master.
   Serial.print("I2C slave ready at address: ");
