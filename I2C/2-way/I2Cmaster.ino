@@ -27,13 +27,13 @@ void setup(){
 }
 
 void loop(){
-  byte snd=0; // byte that we will send to slave. Feel free to change this as needed (e.g. any number between 0-255)
+  byte snd=7; // byte that we will send to slave. Feel free to change this as needed (e.g. any number between 0-255)
   Wire.beginTransmission(I2C_ADDR1); // Start a call to slave address I2C_ADDR
-  Wire.write(snd);  // send a character 0 to the slave (1 byte long is default if # bytes not specified)
+  Wire.write(snd);  // send a character 0 to the slave
   Wire.endTransmission(); // end transmission to slave
   Serial.print("Sent to slave: ");
   Serial.println(snd);
-
+  delay(500); // wait a bit
   // Get data back from the slave:
   Wire.requestFrom(I2C_ADDR1,BYTELEN); // ask for BITLEN bytes from slave
   String response=""; // get response string ready
@@ -43,4 +43,5 @@ void loop(){
   }
   Serial.print("Received from slave: ");
   Serial.println(response);
+  delay(500); // wait a bit
 }
