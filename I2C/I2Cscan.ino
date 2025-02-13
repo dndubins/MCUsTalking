@@ -25,7 +25,7 @@ void setup(){
       Serial.println(F(")"));
       delay(10);
       // See if the device has anything to say:
-      Wire.requestFrom(byte); // ask for data from slave
+      Wire.requestFrom(i); // ask for data from slave
       String response=""; // get response string ready
       while (Wire.available()){
         char c=Wire.read(); // read character from slave
