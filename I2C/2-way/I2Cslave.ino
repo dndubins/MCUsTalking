@@ -18,7 +18,7 @@ GND - GND
 #define I2C_ADDR 0x08  // use a unique bit address 0x08 for the slave
 #define BYTELEN 5      // number of bytes (or characters) to ask for from the slave
 byte rcv = 0;          // to hold received data from master
-String msg = "Hello";  // message to send
+char msg[6] = "Hello";  // message to send
 
 void setup(){
   Serial.begin(9600);   // Start the Serial Monitor
@@ -34,11 +34,7 @@ void loop(){
 }
 
 void requestEvent(){ // function that runs when master asks for information
-  byte response[BYTELEN];
-  for (byte i=0; i<BYTELEN; i++){
-    response[i]=(byte)msg.charAt(i); // I think you can safely replace this with msg[i]. charAT() is a function to index strings like arrays.
-  }
-  Wire.write(response,sizeof(response)); // send msg to master
+  Wire.write(msg,sizeof(msg)); // send msg to master
   Serial.print("Sent to master: "); // report event to Serial Monitor.
   Serial.println(msg);  
 }
