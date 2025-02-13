@@ -31,9 +31,9 @@ void setup(){
         char c=Wire.read(); // read character from slave
         response += c; // add char to String
       }
-      Serial.print("Received from device ");
+      Serial.print(F("Received from Device "));
       Serial.print(count);
-      Serial.println(": ");
+      Serial.println(F(": "));
       Serial.println(response);
     } 
   }
