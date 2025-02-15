@@ -12,10 +12,10 @@
 void setup(){
   Serial.begin(9600); // Start the Serial Monitor
   Serial.println(F("Scanning for I2C devices."));
-  byte n=0;
+  byte n=0; // counter for devices
   Wire.begin(); // initialize I2C as Master
   for(byte i=8; i<120;i++){ // Note: Addresses 0x00-0x07 and >0x77 are reserved.
-    Wire.beginTransmission(i);
+    Wire.beginTransmission(i); // start I2C transmission at address i
     byte ret=Wire.endTransmission();
     if (ret==0){
       Serial.print(F("Device "));
@@ -27,14 +27,15 @@ void setup(){
       printAddr(i);
     }
   }
-  if(n==0)Serial.println(F("No I2C devices found."));
+  if(n==0)Serial.println(F("No devices found."));
   Serial.println (F("Scan finished. Press RST to scan again."));
 }
 
 void printAddr(byte addr){
-  Serial.print(addr,DEC);
-  Serial.print(F(" (0x"));
-  Serial.print(addr,HEX);
+  Serial.print(addr,DEC);  // print decimal address
+  Serial.print(F(" (0x")); // print hexidecimal prefix
+  if(i<10)Serial.print(F("0")); // print leading zero
+  Serial.print(addr,HEX); // print hexidecimal address
   Serial.println(F(")"));
 }
 
