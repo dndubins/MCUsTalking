@@ -6,6 +6,7 @@
 // Previously available at: https://playground.arduino.cc/Main/I2cScanner
 // and Tomas Inouk at https://gist.github.com/tomasinouk/b257c68fde96f5f03f87
 // List of common addresses: https://learn.adafruit.com/i2c-addresses/the-list
+// Error checking: https://docs.arduino.cc/language-reference/en/functions/communication/wire/endTransmission/
 
 #include <Wire.h> // include Wire.h for I2C communications
 
@@ -22,9 +23,12 @@ void setup(){
       Serial.print(++n);
       Serial.print(F(" address: "));
       printAddr(i);
-    }else if(ret>0 && ret<5){
-      //For a description of errors, see: 
-      //https://docs.arduino.cc/language-reference/en/functions/communication/wire/endTransmission/
+    }else if(ret>0 && ret<5){ 
+      //1: data too long to fit in transmit buffer
+      //2: received NACK on transmit of address
+      //3: received NACK on transmit of data
+      //4: other error
+      //5: timeout (no device)
       Serial.println(F("Error at address: "));
       printAddr(i);
     }
