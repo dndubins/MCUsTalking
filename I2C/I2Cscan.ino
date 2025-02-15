@@ -22,7 +22,9 @@ void setup(){
       Serial.print(++n);
       Serial.print(F(" address: "));
       printAddr(i);
-    }else if(ret==4){
+    }else if(ret>0 && ret<5){
+      //For a description of errors, see: 
+      //https://docs.arduino.cc/language-reference/en/functions/communication/wire/endTransmission/
       Serial.println(F("Error at address: "));
       printAddr(i);
     }
