@@ -4,6 +4,7 @@
 // Date: 13-Feb-25
 // Original sketch by Nick Gammon, I2C_scanner.ino, 20th April 2011
 // Previously available at: https://playground.arduino.cc/Main/I2cScanner
+// and Tomas Inouk at https://gist.github.com/tomasinouk/b257c68fde96f5f03f87
 // List of common addresses: https://learn.adafruit.com/i2c-addresses/the-list
 
 #include <Wire.h> // include Wire.h for I2C communications
@@ -13,20 +14,28 @@ void setup(){
   Serial.println(F("Scanning for I2C devices."));
   byte n=0;
   Wire.begin(); // initialize I2C as Master
-  for(byte i=8; i<120;i++){ // Addresses 0-7 and >0x77 are reserved.
+  for(byte i=8; i<120;i++){ // Note: Addresses 0x00-0x07 and >0x77 are reserved.
     Wire.beginTransmission(i);
-    if (Wire.endTransmission()==0){
+    byte ret=Wire.endTransmission();
+    if (ret==0){
       Serial.print(F("Device "));
       Serial.print(++n);
       Serial.print(F(" address: "));
-      Serial.print(i,DEC);
-      Serial.print(F(" (0x"));
-      Serial.print(i,HEX);
-      Serial.println(F(")"));
+      printAddr(i);
+    }else if(ret==4){
+      Serial.println(F("Error at address: "));
+      printAddr(i);
     }
   }
   if(n==0)Serial.println(F("No I2C devices found."));
   Serial.println (F("Scan finished. Press RST to scan again."));
+}
+
+void printAddr(byte addr){
+  Serial.print(addr,DEC);
+  Serial.print(F(" (0x"));
+  Serial.print(addr,HEX);
+  Serial.println(F(")"));
 }
 
 void loop(){
