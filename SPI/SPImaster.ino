@@ -2,7 +2,7 @@
 //Date: 10-Apr-25
 //Send and receive 1 byte over SPI
 //Wiring:
-//UNO – MEGA:
+//Uno Master - Uno Slave:
 //10 - 10 (CS-CS)
 //11 – 11 (MOSI-MOSI)
 //12 – 12 (MISO-MISO)
