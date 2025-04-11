@@ -1,4 +1,5 @@
 //SPImaster.ino: SPI Master, 2 MCUs Talking
+//Author: D. Dubins
 //Date: 11-Apr-25
 //Send a byte and receive a struct over SPI
 //Wiring:
