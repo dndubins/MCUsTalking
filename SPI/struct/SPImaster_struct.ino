@@ -1,5 +1,4 @@
 //SPImaster_struct.ino: SPI Master, 2 MCUs Talking
-//Author: D. Dubins
 //Date: 11-Apr-25
 //Send a byte and receive a struct over SPI
 //Wiring:
@@ -11,8 +10,8 @@
 //GND - GND
 
 #include <SPI.h> // Load SPI library
-byte CS = 10;    // Use as CS pin for Mega
-byte requestByte = 0xFF; // Byte to send to request struct
+const byte CS = 10;    // Use as CS pin for Mega
+const byte requestByte = 0xFF; // Used to request data from the slave
 int byteIndex = 0;  // Index for tracking which byte to receive
 
 struct myStruct {
@@ -50,20 +49,26 @@ void loop() {
     RXdata.myCharArr[byteIndex] = SPI.transfer(0x00); // Receive byte
     delay(1);
   }
-
-  Serial.println("Master received struct:"); // print received data from struct
-  Serial.print("Long L: ");
-  Serial.println(RXdata.myData.L);
-  Serial.print("Int I: ");
-  Serial.println(RXdata.myData.I);
-  Serial.print("Byte B: ");
-  Serial.println(RXdata.myData.B);
-  Serial.print("Char C: ");
-  Serial.println(RXdata.myData.C);
-  Serial.print("Bool b: ");
-  Serial.println(RXdata.myData.b);
-  Serial.print("Float F: ");
-  Serial.println(RXdata.myData.F); 
+  // Receive response byte
+  byte responseByte = SPI.transfer(0x00);
+  delay(1);
+  if(responseByte==requestByte){
+    Serial.println("Master received struct:"); // print received data from struct
+    Serial.print("Long L: ");
+    Serial.println(RXdata.myData.L);
+    Serial.print("Int I: ");
+    Serial.println(RXdata.myData.I);
+    Serial.print("Byte B: ");
+    Serial.println(RXdata.myData.B);
+    Serial.print("Char C: ");
+    Serial.println(RXdata.myData.C);
+    Serial.print("Bool b: ");
+    Serial.println(RXdata.myData.b);
+    Serial.print("Float F: ");
+    Serial.println(RXdata.myData.F); 
+  }else{
+    Serial.println("Data communications error.");
+  }
   digitalWrite(CS, HIGH); // Deselect slave
   delay(1000); // Wait before sending another request
 }
