@@ -10,4 +10,4 @@ What if you'd like to transfer more than one byte, and they are different types?
 
 <b>/struct/SPImaster_struct.ino</b> and <b>/struct/SPIslave_struct.ino</b>.<p>
 
-The master sends a request byte to the slave. The slave then sends a struct back to the master. The master receives the data in its own variable called RXdata, then prints it out.<p>
+The master sends a request byte to the slave. The slave then sends a struct back to the master. The master receives the data in its own variable called RXdata, then prints it out. There's a little bit of error checking with the response (nothing fancy).<p>
