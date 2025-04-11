@@ -1,6 +1,7 @@
 //SPImaster.ino: SPI Master, 2 MCUs Talking
 //Author: D. Dubins
 //Date: 10-Apr-25
+//Thanks to ChatGPT for guidance on SPI, structs, and error checking!
 //Send and receive 1 byte over SPI
 //Wiring:
 //Uno Master - Uno Slave:
