@@ -1,5 +1,7 @@
 //SPIslave_struct.ino: SPI Slave, 2 MCUs Talking
+//Author: D. Dubins
 //Date: 11-Apr-25
+//Thanks to ChatGPT for guidance on SPI, structs, and error checking!
 //receive a byte and send a struct over SPI
 //Wiring:
 //Uno Master – Uno Slave:
