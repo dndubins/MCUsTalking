@@ -1,5 +1,4 @@
-//SPIslave.ino: SPI Slave, 2 MCUs Talking
-//Author: D. Dubins
+//SPIslave_struct.ino: SPI Slave, 2 MCUs Talking
 //Date: 11-Apr-25
 //receive a byte and send a struct over SPI
 //Wiring:
@@ -9,12 +8,12 @@
 //12 – 12 (MISO-MISO)
 //13 - 13 (SCK-SCK)
 //GND - GND
-
 #include <SPI.h>
 
 volatile byte rcv = 0;
 volatile int byteIndex = 0;
-volatile boolean dataReceived = false;
+const byte responseByte = 0xFF; // used for error checking at the Master
+volatile boolean dataSent = false;
 
 struct myStruct {
   long L;
@@ -54,7 +53,6 @@ void setup() {
 
 ISR(SPI_STC_vect) {
   rcv = SPDR;  // Receive byte from master
-
   //If request byte received (0xFF), reset byteIndex and start sending data
   if (rcv == 0xFF) {
     byteIndex = 0;
@@ -66,16 +64,17 @@ ISR(SPI_STC_vect) {
   byteIndex++;
 
   // Check if all bytes have been sent
-  if (byteIndex >= structSize) {
+  if (byteIndex > structSize) {
+    SPDR = responseByte; // send response byte to master
     byteIndex = 0; // Reset for the next transfer
-    dataReceived = true; // Indicate that the full struct has been sent
+    dataSent = true; // Indicate that the full struct has been sent
   }
 }
 
 void loop() {
-  // Check if the slave has sent the data (this could be extended to handle other operations)
-  if (dataReceived) {
-    Serial.println("Slave has sent the full struct!");
-    dataReceived = false;  // Reset the flag
+  // Check if the slave has sent the data
+  if (dataSent) {
+    Serial.println("Struct sent to master.");
+    dataSent = false;  // Reset the flag
   }
 }
