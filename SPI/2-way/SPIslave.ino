@@ -1,4 +1,5 @@
 //SPIslave.ino: SPI Slave, 2 MCUs Talking
+//Author: D. Dubins
 //Date: 10-Apr-25
 //Send and receive 1 byte over SPI
 //Wiring:
