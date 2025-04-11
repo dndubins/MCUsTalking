@@ -1,4 +1,5 @@
 //SPImaster.ino: SPI Master, 2 MCUs Talking
+//Author: D. Dubins
 //Date: 10-Apr-25
 //Send and receive 1 byte over SPI
 //Wiring:
@@ -10,7 +11,7 @@
 //GND - GND
 
 #include <SPI.h> // load SPI library
-byte CS = 10;    // Use as CS pin for Uno
+byte CS = 10;    // Use as CS pin
 byte snd = 0x01; // byte to send
 
 void setup() {
