@@ -2,7 +2,7 @@
 These two sketches connect two Unos together, to send information to each other using SPI. <p>
 
 In the 2-way folder, the sketches SPImaster.ino and SPIslave.ino allow for full-duplex (simultaneous) bi-directional communication of one byte.<br>
-The minimal sketches *2-way/SPImaster.ino* and 2-way/SPIslave.ino are written to only transfer one byte.<br>
+The minimal sketches <b>2-way/SPImaster.ino</b> and 2-way/SPIslave.ino are written to only transfer one byte.<br>
 
 These sketches were were made through very lengthy conversations with ChatGPT and Perplexity. This is not an efficient way to code (yet!).
 
