@@ -20,7 +20,7 @@
 SoftwareSerial MCU2Serial(2, 3);  // define software serial connection to MCU2 (RX:2, TX:3)
 
 void setup() {
-  Serial.begin(57600);                                         // start serial connection
+  Serial.begin(9600);                                          // start serial connection
   MCU2Serial.begin(57600);                                     // start software serial connection with MCU2 (max speed for SoftwareSerial is 57600 for Uno)
   Serial.println("Enter number of flashes to send to MCU2:");  // ask user to enter a number
 }
