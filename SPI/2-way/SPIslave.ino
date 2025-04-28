@@ -5,7 +5,7 @@
 //Send and receive 1 byte over SPI
 //Wiring:
 //Uno Master – Uno Slave:
-//10 - 10 (CS-CS)
+//10 - 10 (CS-CS) //CS (cable select) pin on slave should be slave select "SS" on MCU datasheet
 //11 – 11 (MOSI-MOSI)
 //12 – 12 (MISO-MISO)
 //13 - 13 (SCK-SCK)
