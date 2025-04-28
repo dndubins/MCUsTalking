@@ -28,6 +28,11 @@ void setup(){
 }
 
 void loop(){
+  if(rcv!=0){ // print received data from master if any
+    Serial.print("Received: ");
+    Serial.print(rcv);
+    rcv=0;   //reset rcv (0 is ASCII null char)
+  }
   delay(50); // short time delay recommended
 }
 
@@ -38,6 +43,4 @@ void receiveEvent(){
   while (Wire.available()>0){ 
     rcv=Wire.read();
   }
-  Serial.print("Received: ");
-  Serial.println(rcv); // Other commands can go here
 }
