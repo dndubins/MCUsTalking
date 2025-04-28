@@ -12,7 +12,7 @@
 //GND - GND
 
 #include <SPI.h> // load SPI library
-byte CS = 10;    // Use as CS pin
+byte CS = 10;    // Use as CS pin (can be any digital pin capable of OUTPUT mode)
 byte snd = 0x01; // byte to send
 
 void setup() {
@@ -23,7 +23,7 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(CS, LOW); // Select Uno
+  digitalWrite(CS, LOW); // Select slave on CS line
   byte rcv = SPI.transfer(snd); // Send byte snd, receive byte rcv
   digitalWrite(CS, HIGH); // Deselect Uno
   Serial.print("Master received: ");
