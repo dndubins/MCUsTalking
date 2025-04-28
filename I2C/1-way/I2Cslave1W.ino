@@ -22,8 +22,8 @@ void setup(){
   Serial.begin(9600);   // start the Serial Monitor
   Wire.begin(I2C_ADDR); // initialize I2C as slave at
                         // address I2C_ADDR
-// attach interrupt function receiveEvent, 
-// to run when master sends data:
+  // attach interrupt function receiveEvent, 
+  // to run when master sends data:
   Wire.onReceive(receiveEvent); 
 }
 
