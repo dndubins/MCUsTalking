@@ -12,7 +12,7 @@
 //GND - GND
 
 #include <SPI.h> // Load SPI library
-const byte CS = 10;    // Use as CS pin for Mega
+const byte CS = 10; // Use as CS pin (can be any digital pin capable of OUTPUT mode)
 const byte requestByte = 0xFF; // Used to request data from the slave
 int byteIndex = 0;  // Index for tracking which byte to receive
 
