@@ -42,7 +42,7 @@ void setup() {
 }
 
 void loop() {
-  digitalWrite(CS, LOW); // Select Uno
+  digitalWrite(CS, LOW); // Select slave
   SPI.transfer(requestByte); // Send request byte to slave. This resets byteIndex and prevents offsetting bits.
   delay(1);  // Wait for slave to process request
 
