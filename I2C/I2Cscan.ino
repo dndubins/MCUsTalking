@@ -1,7 +1,7 @@
 // I2Cscan.ino
 // Scan for slave I2C devices as Master
 // Adapted by David Dubins 
-// Date: 13-Feb-25
+// Date: 01-May-25
 // Original sketch by Nick Gammon, I2C_scanner.ino, 20th April 2011
 // Previously available at: https://playground.arduino.cc/Main/I2cScanner
 // and Tomas Inouk at https://gist.github.com/tomasinouk/b257c68fde96f5f03f87
