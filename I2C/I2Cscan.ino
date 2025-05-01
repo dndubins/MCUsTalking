@@ -40,7 +40,7 @@ void setup(){
 void printAddr(byte addr){
   Serial.print(addr,DEC);  // print decimal address
   Serial.print(F(" (0x")); // print hexidecimal prefix
-  if(i<10)Serial.print(F("0")); // print leading zero
+  if(addr<10)Serial.print(F("0")); // print leading zero
   Serial.print(addr,HEX); // print hexidecimal address
   Serial.println(F(")"));
 }
