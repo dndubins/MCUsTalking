@@ -19,10 +19,10 @@
 SoftwareSerial BTSerial(TXD, RXD);  // RX, TX
 
 void setup() {
-  pinMode(LEDpin, OUTPUT);
-  Serial.begin(9600);      // start the Serial Monitor
+  pinMode(LEDpin, OUTPUT);  // LEDpin in OUTPUT mode
+  Serial.begin(9600);       // start the Serial Monitor
   BTSerial.begin(38400);    // start Serial Bluetooth
-  Serial_clear(BTSerial);  // clear the serial buffer
+  Serial_clear(BTSerial);   // clear the serial buffer
 }
 
 void loop() {
