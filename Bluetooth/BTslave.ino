@@ -1,4 +1,4 @@
-//BTslave.ino: Bluetooth Slave, 2 MCUs Talking
+//BTslave.ino: Slave device for Bluetooth UART connection between 2 MCUs.
 //Author: D. Dubins
 //Date: 07-Jun-25
 //Wiring: MCU slave - HC-06/BT-06:
@@ -11,9 +11,9 @@
 #define RELAY_ON '1'  // char to turn relay on
 #define RELAY_OFF '2' // char to turn relay off
 
-// HC-06/BT-06 Connections:
-#define RXD 3           // Digital pin for BT-06 TX (pin 2). (RX MCU - TX BT-06)
-#define TXD 2           // Digital pin for BT-06 RX (pin 3). (TX MCU - RX BT-06)
+// HC-06/BT-06 Connections
+#define RXD 3  // (TX MCU - HC-06 RXD)
+#define TXD 2  // (RX MCU - HC-06 TXD)
 
 #include <SoftwareSerial.h>
 SoftwareSerial BTSerial(TXD, RXD);  // RX, TX
@@ -28,9 +28,9 @@ void setup() {
 }
 
 void loop() {
-  if (BTSerial.available()) { // listen for commands
+  if (BTSerial.available()) {
     char choice = BTSerial.read();
-    respondTo(choice); // respond to commands
+    respondTo(choice);
   }
 }
 
