@@ -67,11 +67,12 @@ void Serial_clear(SoftwareSerial &serialport) {
   }
 }
 
-void flashLED(byte i){ // communications error signal
-  for(int i=0;i<3;i++){
+void flashLED(byte n){ // communications error signal
+  for(int i=0;i<n;i++){
     digitalWrite(LEDpin,HIGH); // turn LED on
     delay(100);
     digitalWrite(LEDpin,LOW); // turn LED off
     delay(100);
   }
 }
+
