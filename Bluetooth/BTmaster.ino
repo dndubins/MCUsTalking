@@ -12,8 +12,8 @@
 #define RELAY_OFF '2' // char to turn relay off
 
 // BT-06 Connections
-#define RXD 11           // Digital pin for BT-06 TX (pin 2). (RX MCU - TX BT-06)
-#define TXD 10           // Digital pin for BT-06 RX (pin 3). (TX MCU - RX BT-06)
+#define RXD 2            // Digital pin for BT-06 TX (pin 2). (RX MCU - TX BT-06)
+#define TXD 3            // Digital pin for BT-06 RX (pin 3). (TX MCU - RX BT-06)
 
 #include <SoftwareSerial.h>
 SoftwareSerial BTSerial(TXD, RXD);  // RX, TX
