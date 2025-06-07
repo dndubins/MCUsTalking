@@ -7,7 +7,7 @@
 //TXD - Pin 2
 //Pin 3 - 1K - RXD - 2K - GND 
 
-#define LEDpin 13   // Digital pin for relay control (heater).
+#define LEDpin 13     // onboard LED
 #define RELAY_ON '1'  // char to turn relay on
 #define RELAY_OFF '2' // char to turn relay off
 
@@ -19,17 +19,17 @@
 SoftwareSerial BTSerial(TXD, RXD);  // RX, TX
 
 void setup() {
-  pinMode(LEDpin, OUTPUT);   // set relayPin to OUTPUT mode
+  pinMode(LEDpin, OUTPUT);
   Serial.begin(9600);      // start the Serial Monitor
   BTSerial.begin(9600);    // start Serial Bluetooth
   Serial_clear(BTSerial);  // clear the serial buffer
 }
 
 void loop() {
-  sendBT(RELAY_ON); // turn relay on
-  delay(1000);
+  sendBT(RELAY_ON);  // turn relay on
+  delay(1000);       // wait a bit
   sendBT(RELAY_OFF); // turn relay off
-  delay(1000); // wait a bit
+  delay(1000);       // wait a bit
 }
 
 bool sendBT(char i){
@@ -59,11 +59,11 @@ bool sendBT(char i){
   Serial_clear(BTSerial); // clear the buffer
 }
 
-void Serial_clear(SoftwareSerial &serialport) {  // used to clear the serial buffers from junk
-  //serialport is passed by value (prefix &) so the function operates on the actual serial port, and not a copy of it.
+// To clear serial buffer:
+void Serial_clear(SoftwareSerial &serialport) {
   serialport.listen();
-  while (serialport.available()) {  // while data are available in the buffer
-    byte i = serialport.read();     // read the data and store to i
+  while (serialport.available()){
+    byte i = serialport.read();
   }
 }
 
