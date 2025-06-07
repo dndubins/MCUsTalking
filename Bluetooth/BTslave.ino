@@ -23,7 +23,7 @@ void setup() {
   Serial.begin(9600);      // start the Serial Monitor
   BTSerial.begin(9600);    // start Serial Bluetooth
   Serial.println("Slave ready.");  // print message to Serial
-  BT.Serial.println("Slave ready.");  // print message to BTSerial
+  BTSerial.println("Slave ready.");  // print message to BTSerial
   Serial_clear(BTSerial);  // clear the serial buffer
 }
 
