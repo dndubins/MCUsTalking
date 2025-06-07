@@ -1,4 +1,4 @@
-//BTslave.ino: Slave device for Bluetooth UART connection between 2 MCUs.
+//BTslave.ino: Bluetooth Slave, 2 MCUs Talking
 //Author: D. Dubins
 //Date: 07-Jun-25
 //Wiring: MCU slave - HC-06/BT-06:
