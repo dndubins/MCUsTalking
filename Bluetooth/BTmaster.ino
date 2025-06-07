@@ -1,4 +1,4 @@
-//BTmaster.ino: Master device for Bluetooth UART connection between 2 MCUs.
+//BTmaster.ino: Bluetooth Master, 2 MCUs Talking
 //Author: D. Dubins
 //Date: 07-Jun-25
 //Wiring: MCU slave - HC-05
