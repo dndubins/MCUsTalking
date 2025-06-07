@@ -28,9 +28,9 @@ void setup() {
 }
 
 void loop() {
-  if (BTSerial.available()) {
+  if (BTSerial.available()) { // listen for commands
     char choice = BTSerial.read();
-    respondTo(choice);
+    respondTo(choice); // respond to commands
   }
 }
 
