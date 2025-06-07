@@ -47,7 +47,7 @@ void respondTo(char c) {  // respond to character sent from bluetooth
       BTSerial.print("1"); // send success bit
       break;
     default:
-      Serial.println("ERROR command not recognized.");
+      Serial.println("ERROR: command not recognized.");
       BTSerial.print("0"); // send fail bit
   }
   Serial_clear(BTSerial);  // clear the serial buffer in case it is clogged with stuff
