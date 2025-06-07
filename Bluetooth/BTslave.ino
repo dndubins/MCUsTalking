@@ -7,11 +7,11 @@
 //TXD - Pin 2
 //Pin 3 - 1K - RXD - 2K - GND 
 
-#define relayPin 13   // Digital pin for relay control (heater).
+#define relayPin 13   // pin for relay control
 #define RELAY_ON '1'  // char to turn relay on
 #define RELAY_OFF '2' // char to turn relay off
 
-// BT-06 Connections
+// HC-06/BT-06 Connections:
 #define RXD 3           // Digital pin for BT-06 TX (pin 2). (RX MCU - TX BT-06)
 #define TXD 2           // Digital pin for BT-06 RX (pin 3). (TX MCU - RX BT-06)
 
