@@ -22,7 +22,8 @@ void setup() {
   pinMode(relayPin, OUTPUT);   // set relayPin to OUTPUT mode
   Serial.begin(9600);      // start the Serial Monitor
   BTSerial.begin(9600);    // start Serial Bluetooth
-  printMenu();             // print the menu over bluetooth
+  Serial.println("Slave ready.");  // print message to Serial
+  BT.Serial.println("Slave ready.");  // print message to BTSerial
   Serial_clear(BTSerial);  // clear the serial buffer
 }
 
@@ -49,8 +50,6 @@ void respondTo(char c) {  // respond to character sent from bluetooth
       Serial.println("ERROR command not recognized.");
       BTSerial.print("0"); // send fail bit
   }
-  // now print menu:
-  printMenu();             // print the menu over bluetooth
   Serial_clear(BTSerial);  // clear the serial buffer in case it is clogged with stuff
 }
 
@@ -60,9 +59,4 @@ void Serial_clear(SoftwareSerial &serialport) {  // used to clear the serial buf
   while (serialport.available()) {  // while data are available in the buffer
     byte i = serialport.read();     // read the data and store to i
   }
-}
-
-void printMenu(){
-  Serial.println("1: turn relay ON");
-  Serial.println("2: turn relay OFF");
 }
