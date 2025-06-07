@@ -1,19 +1,19 @@
 //BTmaster.ino: Bluetooth Master, 2 MCUs Talking
 //Author: D. Dubins
 //Date: 07-Jun-25
-//Wiring: MCU slave - HC-05
+//Wiring: MCU master - HC-05:
 //+5V - Vcc
 //GND - GND
-//TXD - Pin 10
-//RXD - Pin 11 
+//TXD - Pin 2
+//Pin 3 - 1K - RXD - 2K - GND 
 
 #define LEDpin 13   // Digital pin for relay control (heater).
 #define RELAY_ON '1'  // char to turn relay on
 #define RELAY_OFF '2' // char to turn relay off
 
-// BT-06 Connections
-#define RXD 2            // Digital pin for BT-06 TX (pin 2). (RX MCU - TX BT-06)
-#define TXD 3            // Digital pin for BT-06 RX (pin 3). (TX MCU - RX BT-06)
+// HC-05 Connections
+#define RXD 3  // (TX MCU - HC-05 RXD)
+#define TXD 2  // (RX MCU - HC-05 TXD)
 
 #include <SoftwareSerial.h>
 SoftwareSerial BTSerial(TXD, RXD);  // RX, TX
