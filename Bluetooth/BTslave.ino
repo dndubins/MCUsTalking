@@ -44,20 +44,20 @@ void loop() {
 void respondTo(char c) {  // respond to character sent from bluetooth
   switch (c) {
     case RELAY_ON:  // turn relay on
+      BTSerial.print(F("1")); // send success bit
       digitalWrite(relayPin, HIGH);
       Serial.println(F("Turned relay ON."));
-      BTSerial.print(F("1")); // send success bit
       timer=millis(); // reset timer
       break;
     case RELAY_OFF:  // turn LED off
+      BTSerial.print(F("1")); // send success bit
       digitalWrite(relayPin, LOW);
       Serial.println(F("Turned relay OFF."));
-      BTSerial.print(F("1")); // send success bit
       timer=millis(); // reset timer
       break;
     default:
-      Serial.println(F("ERROR: command not recognized."));
       BTSerial.print(F("0")); // send fail bit. Don't reset timer.
+      Serial.println(F("ERROR: command not recognized."));
   }
   Serial_clear(BTSerial);  // clear the serial buffer in case it is clogged with stuff
 }
