@@ -75,4 +75,3 @@ void flashLED(byte n){ // communications error signal
     delay(100);
   }
 }
-
