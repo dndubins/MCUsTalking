@@ -10,6 +10,8 @@
 #define relayPin 13   // pin for relay control
 #define RELAY_ON '1'  // char to turn relay on
 #define RELAY_OFF '2' // char to turn relay off
+#define TIMEOUT 60000 // timeout for not receiving a signal (1 min)
+unsigned long timer=millis(); // to keep track of time for TIMEOUT action
 
 // HC-06/BT-06 Connections
 #define RXD 3  // (TX MCU - HC-06 RXD)
@@ -22,8 +24,8 @@ void setup() {
   pinMode(relayPin, OUTPUT);   // set relayPin to OUTPUT mode
   Serial.begin(9600);      // start the Serial Monitor
   BTSerial.begin(9600);    // start Serial Bluetooth
-  Serial.println("Slave ready.");  // print message to Serial
-  BTSerial.println("Slave ready.");  // print message to BTSerial
+  Serial.println(F("Slave ready."));  // print message to Serial
+  BTSerial.println(F("Slave ready."));  // print message to BTSerial
   Serial_clear(BTSerial);  // clear the serial buffer
 }
 
@@ -32,23 +34,30 @@ void loop() {
     char choice = BTSerial.read();
     respondTo(choice);
   }
+  if(millis()-timer>TIMEOUT){
+    digitalWrite(relayPin, LOW);
+    Serial.println(F("Timed out: Turned relay OFF."));
+    timer=millis();  // reset the timer
+  }
 }
 
 void respondTo(char c) {  // respond to character sent from bluetooth
   switch (c) {
     case RELAY_ON:  // turn relay on
       digitalWrite(relayPin, HIGH);
-      Serial.println("Turned relay ON.");
-      BTSerial.print("1"); // send success bit
+      Serial.println(F("Turned relay ON."));
+      BTSerial.print(F("1")); // send success bit
+      timer=millis(); // reset timer
       break;
     case RELAY_OFF:  // turn LED off
       digitalWrite(relayPin, LOW);
-      Serial.println("Turned relay OFF.");
-      BTSerial.print("1"); // send success bit
+      Serial.println(F("Turned relay OFF."));
+      BTSerial.print(F("1")); // send success bit
+      timer=millis(); // reset timer
       break;
     default:
-      Serial.println("ERROR: command not recognized.");
-      BTSerial.print("0"); // send fail bit
+      Serial.println(F("ERROR: command not recognized."));
+      BTSerial.print(F("0")); // send fail bit. Don't reset timer.
   }
   Serial_clear(BTSerial);  // clear the serial buffer in case it is clogged with stuff
 }
