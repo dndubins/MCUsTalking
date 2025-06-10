@@ -19,6 +19,7 @@ SoftwareSerial BTSerial(2, 3); // RX | TX
  
 void setup(){
   Serial.begin(9600); //start the Serial Monitor
+  //Use 9600 for HC-06/BT06, 38400 for HC-05:
   BTSerial.begin(9600); //start Bluetooth Serial
   Serial.println(F("Serial monitor ready."));
 }
